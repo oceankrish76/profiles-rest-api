@@ -4,11 +4,19 @@ from rest_framework.views import APIView
 # standard Response object to return Response
 # when calling the APIView 
 from rest_framework.response import Response
+# for http status code in returning in post function handler
+from rest_framework import status
+
+# import serializers model
+from django_profiles_api import serializers
+
 
 # Create your views here.
 class HelloApiView(APIView):
     """Test API View"""
     # define url endpoint and assign to this view 
+    # set serializer, serializer also does validation 
+    serializer_class = serializers.HelloSerializer
 
     def get(self, request, format=None):
         """Returns a list of APIView features"""
@@ -22,3 +30,16 @@ class HelloApiView(APIView):
         # return list or dictionary
         return Response({'message': 'Hello!', 'an_apiview': an_apiview})
 
+# self.serializer_class is a standard class function comes with APIView
+# req obj
+    def post(self, request):
+        """Create a hello message with our name"""
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            name = serializer.validated_data.get('name')
+            message = f'Hello {name}'
+            # pass in a dictionary to the Response
+            return Response({'message': message})
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
