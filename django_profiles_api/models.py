@@ -29,7 +29,7 @@ class UserProfileManager(BaseUserManager): # BaseUserManager as a parent class
     def create_superuser(self, email, name, password):
         """Create and save a new superuser with given details"""
         # coz of automatically passing self, we don't need to pass self while calling
-        user = self.create_user(email, name)
+        user = self.create_user(email, name, password)
 
         user.is_superuser = True
         user.is_staff = True
@@ -51,7 +51,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELD = ['name']
+    REQUIRED_FIELDS = ['name']
 
     # functions to interact
     def get_full_name(self):
