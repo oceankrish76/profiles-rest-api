@@ -2,7 +2,7 @@ from django.db import models
 
 # standard classes to use in order to override
 from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import PermissionMixin
+from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 
 
@@ -10,11 +10,12 @@ class UserProfileManager(BaseUserManager): # BaseUserManager as a parent class
     """Manager for user profiles"""
 
     # self arg for class function
+    # self is automatically passed in for any class function
     def create_user(self, email, name, password=None):
         """Create a new user profile"""
         if not email:
             # raise a value error exception
-            reise ValueError("User must have an email address")
+            raise ValueError("User must have an email address")
 
         # normalize the email address lowercase
         email = self.normalize_email(email)
@@ -24,10 +25,21 @@ class UserProfileManager(BaseUserManager): # BaseUserManager as a parent class
         user.save(using=self.db) # standard django procedure to save obj in django
 
         return user
+    
+    def create_superuser(self, email, name, password):
+        """Create and save a new superuser with given details"""
+        # coz of automatically passing self, we don't need to pass self while calling
+        user = self.create_user(email, name)
+
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self._db)
+
+        return user
 
 
 # Create your models here.
-class UserProfile(AbstractBaseUser, PermissionMixin):
+class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
