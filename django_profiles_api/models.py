@@ -3,6 +3,28 @@ from django.db import models
 # standard classes to use in order to override
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionMixin
+from django.contrib.auth.models import BaseUserManager
+
+
+class UserProfileManager(BaseUserManager): # BaseUserManager as a parent class 
+    """Manager for user profiles"""
+
+    # self arg for class function
+    def create_user(self, email, name, password=None):
+        """Create a new user profile"""
+        if not email:
+            # raise a value error exception
+            reise ValueError("User must have an email address")
+
+        # normalize the email address lowercase
+        email = self.normalize_email(email)
+        user = self.model(email=email, name=name)
+
+        user.set_password(password)
+        user.save(using=self.db) # standard django procedure to save obj in django
+
+        return user
+
 
 # Create your models here.
 class UserProfile(AbstractBaseUser, PermissionMixin):
