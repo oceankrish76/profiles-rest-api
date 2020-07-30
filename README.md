@@ -44,3 +44,5 @@
 - http://127.0.0.1:8000/admin/
 - http://127.0.0.1:8000/admin/django_profiles_api/userprofile/
 - http://127.0.0.1:8000/api/profile/2/
+
+> TokenAuthentication

@@ -2,6 +2,9 @@ from django.shortcuts import render
 
 from rest_framework.views import APIView
 from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
+
+
 # standard Response object to return Response
 # when calling the APIView 
 from rest_framework.response import Response
@@ -11,6 +14,7 @@ from rest_framework import status
 # import serializers model
 from django_profiles_api import serializers
 from django_profiles_api import models
+from django_profiles_api import permissions
 
 
 # Create your views here.
@@ -111,3 +115,6 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     """Handle creating and updating profiles"""
     serializer_class = serializers.UserProfileSerializer
     queryset = models.UserProfile.objects.all()
+    # TokenAuthentication created as tuple not single item
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
