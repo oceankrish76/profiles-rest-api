@@ -61,7 +61,11 @@ class HelloApiView(APIView):
 ## VIEW SETS
 class HelloViewSet(viewsets.ViewSet):
     """Test API ViewSet"""
-    
+    # we can use the same HelloSerializer we've created before
+    # serializer knows which field accepts for example creates
+    # a field that is used for post when we add the POST method below
+    # so those input field(s) come from the serializer
+    serializer_class = serializers.HelloSerializer
     def list(self, request):
         """Return a hello message"""
         a_viewset = [
@@ -70,3 +74,34 @@ class HelloViewSet(viewsets.ViewSet):
             'Provides more functionality with less code',
         ]
         return Response({'message': 'Hello!', 'a_viewset': a_viewset})
+
+    # create function for viewsets
+    def create(self, request):
+        """Create a new hello message"""
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            # so those input field(s) come from the serializer :)
+            name = serializer.validated_data.get('name')
+            message = f'Hello {name}'
+            return Response({'message': message})
+        else:
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+    # retrieve a specific obj with retrieve function for viewsets using primary key
+    def retrieve(self,request, pk=None):
+        """Handle getting an object by its ID"""
+        return Response({'http_method': 'GET'})
+
+    def update(self,request, pk=None):
+        """Handle updating an object"""
+        return Response({'http_method': 'PUT'})
+
+    def partial_update(self, request, pk=None):
+        """Handle updating a part of an object"""
+        return Response({'http_method': 'PATCH'})
+
+    def destroy(self, request, pk=None):
+        """Handle removing an object"""
+        return Response({'http_method': 'DELETE'})
+
