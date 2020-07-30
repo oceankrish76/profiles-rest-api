@@ -15,4 +15,10 @@
 ## POST functionality to APIView
 
 ## Data in json format http://127.0.0.1:8000/api/hello-view/?format=json
+## APIView and VIEWSETS classes allow us to write our logic 
+## APIView (HTTP funcs) have also CRUD and ViewSets(Actions to perform) also have CRUD but offer diff and additional operations
+## When to use ViewSets and when to use APIView
+## register viewsets with urls is slighly diff than registering APIView with urls
 
+## URL retrieving functions provided by Django.
+##
