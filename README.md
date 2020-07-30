@@ -21,4 +21,5 @@
 ## register viewsets with urls is slighly diff than registering APIView with urls
 
 ## URL retrieving functions provided by Django.
-##
+## http://127.0.0.1:8000/api/hello-viewset/, http://127.0.0.1:8000/api/hello-viewset/?format=json
+
