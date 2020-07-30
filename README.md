@@ -23,3 +23,4 @@
 ## URL retrieving functions provided by Django.
 ## http://127.0.0.1:8000/api/hello-viewset/, http://127.0.0.1:8000/api/hello-viewset/?format=json
 
+## http://127.0.0.1:8000/api/hello-viewset/1/
