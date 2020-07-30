@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework.views import APIView
-from rest_framework.views import ViewSets
+from rest_framework import viewsets
 # standard Response object to return Response
 # when calling the APIView 
 from rest_framework.response import Response
