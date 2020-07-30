@@ -9,6 +9,9 @@ from django_profiles_api import views
 router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
 
+# no need base name as we have queryset if we dont want to override
+router.register('profile', views.UserProfileViewSet)
+
 
 # webserveraddress/api/hello-view/
 # MAp url to apiView

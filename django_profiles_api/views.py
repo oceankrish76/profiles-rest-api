@@ -10,6 +10,7 @@ from rest_framework import status
 
 # import serializers model
 from django_profiles_api import serializers
+from django_profiles_api import models
 
 
 # Create your views here.
@@ -105,3 +106,8 @@ class HelloViewSet(viewsets.ViewSet):
         """Handle removing an object"""
         return Response({'http_method': 'DELETE'})
 
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating profiles"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
