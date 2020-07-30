@@ -24,3 +24,23 @@
 ## http://127.0.0.1:8000/api/hello-viewset/, http://127.0.0.1:8000/api/hello-viewset/?format=json
 
 ## http://127.0.0.1:8000/api/hello-viewset/1/
+
+# Features to carry out
+
+- 1. Creating a profile (start by creating a serializer userProfileObjects)
+- 2. Validating the profile data
+- 3. Listing existing profiles
+- 4. Search by email/name
+- 5. View specific with profile id
+- 6. Update profile of logged in user
+- 7. Delete own's own profile
+
+## URLs:
+> /api/profile/
+> /api/profile/<profile_id>/
+
+## modelViewSet vs ViewSet google
+## http://127.0.0.1:8000/api/profile/
+- http://127.0.0.1:8000/admin/
+- http://127.0.0.1:8000/admin/django_profiles_api/userprofile/
+- http://127.0.0.1:8000/api/profile/2/
