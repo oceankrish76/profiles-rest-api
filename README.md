@@ -46,3 +46,4 @@
 - http://127.0.0.1:8000/api/profile/2/
 
 > TokenAuthentication
+> http://127.0.0.1:8000/api/profile/?search=krishna
