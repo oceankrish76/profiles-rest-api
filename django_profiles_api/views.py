@@ -8,6 +8,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework import filters
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 # standard Response object to return Response
 # when calling the APIView 
@@ -138,7 +139,8 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.ProfileFeedItemSerializer
     queryset = models.ProfileFeedItem.objects.all()
-
+    # user must be logged in to make any changes other than reading feeds only
+    permission_classes = (permissions.UpdateOwnStatus, IsAuthenticatedOrReadOnly)
     # when a new obj is creats Django rest frmaework calls perform_create and passes
     # serializer is a model serializer and has save option assigned to it
     def perform_create(self, serializer):
@@ -147,3 +149,4 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
         # request object gets passed into to all viewsets everytime a request is made
         # authenticated user
         serializer.save(user_profile=self.request.user)
+

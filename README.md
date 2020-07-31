@@ -62,3 +62,11 @@
 
 ## DJANGO model to store feed item to db
 ## by default Django creates primary key id to each model we create
+
+http://127.0.0.1:8000/api/feed/
+http://127.0.0.1:8000/api/feed/1
+http://127.0.0.1:8000/api/feed/2/ = invalid 
+http://127.0.0.1:8000/api/login/
+http://127.0.0.1:8000/api/profile/
+http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/admin/authtoken/token/
