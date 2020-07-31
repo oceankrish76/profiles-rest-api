@@ -70,3 +70,7 @@ http://127.0.0.1:8000/api/login/
 http://127.0.0.1:8000/api/profile/
 http://127.0.0.1:8000/admin/
 http://127.0.0.1:8000/admin/authtoken/token/
+
+# AWS
+> * ec2 server instances
+http://cloud-images.ubuntu.com/locator/ec2/
