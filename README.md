@@ -36,8 +36,8 @@
 - 7. Delete own's own profile
 
 ## URLs:
-> /api/profile/
-> /api/profile/<profile_id>/
+> * /api/profile/
+> * /api/profile/<profile_id>/
 
 ## modelViewSet vs ViewSet google
 ## http://127.0.0.1:8000/api/profile/
@@ -45,5 +45,20 @@
 - http://127.0.0.1:8000/admin/django_profiles_api/userprofile/
 - http://127.0.0.1:8000/api/profile/2/
 
-> TokenAuthentication
+> TokenAuthentication,
 > http://127.0.0.1:8000/api/profile/?search=krishna
+
+
+# Feed APIView
+> * CRUD,
+> * Able to RUD own's own feed and Read other's feed item(s),
+> * List All feed items,
+> * GET (list feed items),
+> * POST (create feed item for logged in user),
+> * Manage specific feed item HTTP GET,
+> * Updating feed item HTTP PUT & PATCH,
+> * HTTP delete for deletig the feed item
+* Limit Api view to authenticated user
+
+## DJANGO model to store feed item to db
+## by default Django creates primary key id to each model we create

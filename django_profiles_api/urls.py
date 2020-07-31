@@ -8,9 +8,9 @@ from django_profiles_api import views
 # register viewset with router in Django and include path
 router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
-
 # no need base name as we have queryset if we dont want to override
 router.register('profile', views.UserProfileViewSet)
+router.register('feed', views.UserProfileFeedViewSet)
 
 
 # webserveraddress/api/hello-view/

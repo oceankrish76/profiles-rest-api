@@ -3,3 +3,7 @@ vagrant ssh
 cd vagrant
 source ~/env/bin/activate
 python manage.py runserver 0.0.0.0:8000
+# After creating model do
+python manage.py makemigrations
+# to reflect the changes do
+python manage.py migrate
